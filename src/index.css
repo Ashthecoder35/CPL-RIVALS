@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Lilita+One&family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-burbank-black: "Luckiest Guy", cursive;
+  --font-burbank-reg: "Lilita One", cursive;
+  --font-orbitron: "Orbitron", sans-serif;
+  
+  --color-fortnite-blue: #00BDFF;
+  --color-fortnite-purple: #AF26FF;
+  --color-fortnite-yellow: #FFF000;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0B0E11] text-white font-burbank-reg overflow-x-hidden;
+    /* Fortnite Lobby Style Background */
+    background: radial-gradient(circle at 50% -20%, #1A1A2E 0%, #0B0E11 80%);
+  }
+  
+  h1, h2, h3, h4, h5 {
+    @apply font-burbank-black tracking-wider uppercase;
+  }
+
+  p, span, div {
+    @apply font-burbank-reg;
+  }
+}
+
+@layer components {
+  .fortnite-button {
+    @apply relative px-8 py-3 font-burbank-black text-2xl tracking-widest text-black overflow-hidden transition-all duration-100 uppercase cursor-pointer;
+    background: var(--color-fortnite-yellow);
+    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .fortnite-button:hover {
+    @apply -translate-y-1 -translate-x-1;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
+    filter: brightness(1.1);
+  }
+
+  .fortnite-button:active {
+    @apply translate-y-0 translate-x-0;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Sharp Geometric Cards */
+  .game-card {
+    @apply bg-zinc-900/40 backdrop-blur-xl border-l-[6px] border-fortnite-blue relative transition-all duration-300;
+    clip-path: polygon(
+      0% 0%, 
+      100% 0%, 
+      100% 85%, 
+      92% 100%, 
+      0% 100%
+    );
+  }
+  
+  .game-card:hover {
+    @apply bg-zinc-800/60 -translate-y-1;
+    border-left-color: var(--color-fortnite-purple);
+  }
+
+  .neon-glow-blue {
+    text-shadow: 0 0 15px var(--color-fortnite-blue);
+  }
+  
+  .neon-glow-yellow {
+    text-shadow: 0 0 10px var(--color-fortnite-yellow);
+  }
+}
+
+/* Technical Overlays */
+.tech-grid {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 189, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 189, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(58, 190, 255, 0.2), transparent);
+  animation: scan 8s linear infinite;
+  z-index: 100;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  from { transform: translateY(-100vh); }
+  to { transform: translateY(100vh); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-fortnite-blue);
+}
